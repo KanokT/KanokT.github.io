@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanok T.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        }
+        
+        .gradient-accent {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+        }
+        
+        .tech-card {
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .tech-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
+        }
+        
+        .skill-bar {
+            transition: width 2s ease-in-out;
+        }
+        
+        .typing-animation {
+            border-right: 2px solid #3b82f6;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { border-color: transparent; }
+            51%, 100% { border-color: #3b82f6; }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .dark-card {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(59, 130, 246, 0.1);
+        }
+        
+        .dark-card:hover {
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        /* Center grid items when there are fewer items */
+        .centered-grid {
+            display: grid;
+            justify-content: center;
+        }
+        
+        .centered-grid.has-1 {
+            grid-template-columns: 1fr;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .centered-grid.has-2 {
+            grid-template-columns: repeat(2, 1fr);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 768px) {
+            .centered-grid.has-1,
+            .centered-grid.has-2 {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-900">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-gray-900/90 backdrop-blur-md z-50 shadow-lg border-b border-gray-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <button onclick="scrollToSection('home')" class="flex items-center space-x-3 hover:opacity-80 transition duration-300">
+                    <div class="w-7 h-7 bg-gray-800 border rounded-xl flex items-center justify-center" style="border: 1px solid; border-image: linear-gradient(135deg, #3b82f6, #8b5cf6) 1;">
+                        <span class="text-blue-400 font-bold text-xs">KT</span>
+                    </div>
+                    <div class="text-2xl font-bold gradient-accent bg-clip-text text-transparent">
+                        Kanok T.
+                    </div>
+                </button>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link text-gray-300 hover:text-blue-400">Home</a>
+                    <a href="#about" class="nav-link text-gray-300 hover:text-blue-400">About</a>
+                    <a href="#skills" class="nav-link text-gray-300 hover:text-blue-400">Skills</a>
+                    <a href="#education" class="nav-link text-gray-300 hover:text-blue-400">Education</a>
+                    <a href="#certifications" class="nav-link text-gray-300 hover:text-blue-400">Certifications</a>
+                    <a href="#projects" class="nav-link text-gray-300 hover:text-blue-400">Projects</a>
+                    <a href="#contact" class="nav-link text-gray-300 hover:text-blue-400">Contact</a>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden p-2 text-gray-300">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-900 border-t border-gray-800">
+            <div class="px-4 py-2 space-y-2">
+                <a href="#home" class="block py-2 text-gray-300">Home</a>
+                <a href="#about" class="block py-2 text-gray-300">About</a>
+                <a href="#skills" class="block py-2 text-gray-300">Skills</a>
+                <a href="#education" class="block py-2 text-gray-300">Education</a>
+                <a href="#certifications" class="block py-2 text-gray-300">Certifications</a>
+                <a href="#projects" class="block py-2 text-gray-300">Projects</a>
+                <a href="#contact" class="block py-2 text-gray-300">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen gradient-bg flex items-center justify-center text-white">
+        <div class="text-center px-4">
+            <div class="mb-8">
+                <img src="img_me/Me_1.jpg" alt="Profile Picture" class="w-36 h-36 mx-auto mb-6 rounded-full object-cover border-4 border-white/30 shadow-lg">
+            </div>
+            <h1 class="text-5xl md:text-5xl font-bold mb-4">
+                <span id="typing-text" class="typing-animation gradient-accent bg-clip-text text-transparent">Data Analyst</span>
+            </h1>
+            <h2 class="text-2xl md:text-5xl font-bold mb-6">
+                Internship Candidate
+            </h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto opacity-70">
+                Junior Developer & Data Analyst passionate about technology and AI, eager to learn and create innovative solutions.
+            </p>
+            <div class="space-x-4">
+                <button onclick="scrollToSection('projects')" class="bg-blue-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-blue-700 transition duration-300">
+                    View Projects
+                </button>
+                <button onclick="scrollToSection('contact')" class="border-2 border-blue-400 text-blue-400 px-8 py-3 rounded-full font-semibold hover:bg-blue-400 hover:text-white transition duration-300">
+                    Contact Me
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl font-bold text-white mb-4">About Me</h2>
+                <div class="w-20 h-1 gradient-accent mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="fade-in">
+                    <div class="dark-card p-8 rounded-2xl">
+                        <img src="img_me/Me_2.jpg" alt="Profile Picture" class="w-full h-full object-cover rounded-xl shadow-lg">
+                    </div>
+                </div>
+                
+                <div class="fade-in">
+                    <!-- <h3 class="text-2xl font-bold text-white mb-6">Experienced Technology Developer</h3> -->
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        Hello, my name is Kanok Thummaruckkit. I am a Computer Science student at Bangkok University with a strong interest in technology and innovation. 
+                        As a Junior Developer & Data Analyst, I am passionate about programming, data analysis, and artificial intelligence, with a commitment to continuous learning and skill development.
+                    </p>
+                    <p class="text-gray-300 mb-8 leading-relaxed">
+                        My ambition is to apply my knowledge in real-world projects, creating impactful and innovative solutions that solve challenges and contribute to growth in the tech industry. 
+                        I aim to strengthen my expertise in programming, data analysis, and AI applications to make a meaningful impact in the digital world.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="text-center p-4 dark-card rounded-lg">
+                            <div class="text-2xl font-bold text-blue-400">1+</div>
+                            <div class="text-sm text-gray-400">Project</div>
+                        </div>
+                        <div class="text-center p-4 dark-card rounded-lg">
+                            <div class="text-2xl font-bold text-purple-400">2+</div>
+                            <div class="text-sm text-gray-400">Certificates</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-gray-900">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl font-bold text-white mb-4">Skills & Expertise</h2>
+                <div class="w-20 h-1 gradient-accent mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Programming Languages -->
+                <div class="tech-card dark-card p-6 rounded-xl shadow-lg fade-in">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 gradient-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Languages</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm text-gray-300">Thai</span>
+                                <span class="text-sm text-gray-300">90%</span>
+                            </div>
+                            <div class="bg-gray-700 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full" style="width: 0%" data-width="90%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm text-gray-300">English</span>
+                                <span class="text-sm text-gray-300">55%</span>
+                            </div>
+                            <div class="bg-gray-700 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full" style="width: 0%" data-width="55%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm text-gray-300">SQL</span>
+                                <span class="text-sm text-gray-300">60%</span>
+                            </div>
+                            <div class="bg-gray-700 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full" style="width: 0%" data-width="60%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm text-gray-300">Python</span>
+                                <span class="text-sm text-gray-300">50%</span>
+                            </div>
+                            <div class="bg-gray-700 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full" style="width: 0%" data-width="50%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm text-gray-300">HTML</span>
+                                <span class="text-sm text-gray-300">50%</span>
+                            </div>
+                            <div class="bg-gray-700 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full" style="width: 0%" data-width="50%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Technical Skills -->
+                <div class="tech-card dark-card p-6 rounded-xl shadow-lg fade-in">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 gradient-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Technical Skills</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm text-gray-300">Programming</span>
+                                <span class="text-sm text-gray-300">50%</span>
+                            </div>
+                            <div class="bg-gray-700 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-green-500 to-blue-500 h-2 rounded-full" style="width: 0%" data-width="50%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm text-gray-300">Data Visualization</span>
+                                <span class="text-sm text-gray-300">60%</span>
+                            </div>
+                            <div class="bg-gray-700 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-green-500 to-blue-500 h-2 rounded-full" style="width: 0%" data-width="60%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm text-gray-300">Database</span>
+                                <span class="text-sm text-gray-300">60%</span>
+                            </div>
+                            <div class="bg-gray-700 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-green-500 to-blue-500 h-2 rounded-full" style="width: 0%" data-width="60%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm text-gray-300">Web Developer</span>
+                                <span class="text-sm text-gray-300">65%</span>
+                            </div>
+                            <div class="bg-gray-700 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-green-500 to-blue-500 h-2 rounded-full" style="width: 0%" data-width="65%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Soft Skills -->
+                <div class="tech-card dark-card p-6 rounded-xl shadow-lg fade-in">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 gradient-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Soft Skills</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm text-gray-300">Proactive & self-driven</span>
+                                <span class="text-sm text-gray-300">80%</span>
+                            </div>
+                            <div class="bg-gray-700 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full" style="width: 0%" data-width="80%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm text-gray-300">Team Collaboration</span>
+                                <span class="text-sm text-gray-300">70%</span>
+                            </div>
+                            <div class="bg-gray-700 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full" style="width: 0%" data-width="70%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm text-gray-300">Hard-working & disciplined</span>
+                                <span class="text-sm text-gray-300">80%</span>
+                            </div>
+                            <div class="bg-gray-700 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full" style="width: 0%" data-width="80%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm text-gray-300">Growth mindset</span>
+                                <span class="text-sm text-gray-300">75%</span>
+                            </div>
+                            <div class="bg-gray-700 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full" style="width: 0%" data-width="75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tools & Technologies -->
+                <div class="tech-card dark-card p-6 rounded-xl shadow-lg fade-in">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 gradient-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Tools</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm text-gray-300">Google</span>
+                                <span class="text-sm text-gray-300">90%</span>
+                            </div>
+                            <div class="bg-gray-700 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-orange-500 to-red-500 h-2 rounded-full" style="width: 0%" data-width="90%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm text-gray-300">VS Code</span>
+                                <span class="text-sm text-gray-300">80%</span>
+                            </div>
+                            <div class="bg-gray-700 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-orange-500 to-red-500 h-2 rounded-full" style="width: 0%" data-width="80%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm text-gray-300">Tableau</span>
+                                <span class="text-sm text-gray-300">70%</span>
+                            </div>
+                            <div class="bg-gray-700 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-orange-500 to-red-500 h-2 rounded-full" style="width: 0%" data-width="70%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm text-gray-300">SQLite</span>
+                                <span class="text-sm text-gray-300">60%</span>
+                            </div>
+                            <div class="bg-gray-700 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-orange-500 to-red-500 h-2 rounded-full" style="width: 0%" data-width="60%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm text-gray-300">Microsoft</span>
+                                <span class="text-sm text-gray-300">65%</span>
+                            </div>
+                            <div class="bg-gray-700 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-orange-500 to-red-500 h-2 rounded-full" style="width: 0%" data-width="65%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-20 bg-gray-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl font-bold text-white mb-4">Education</h2>
+                <div class="w-20 h-1 gradient-accent mx-auto rounded-full"></div>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="space-y-8">
+                    <!-- Education Item 1 -->
+                    <div class="tech-card dark-card p-8 rounded-xl shadow-lg fade-in">
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                            <div class="flex-1">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 gradient-accent rounded-full flex items-center justify-center mr-4">
+                                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-bold text-white">Bachelor of Science in Computer Science</h3>
+                                        <p class="text-blue-400 font-semibold">Bangkok University</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-300 mb-2">School of Information Technology and Innovation</p>
+                                <p class="text-sm text-gray-400">GPA: 3.25</p>
+                            </div>
+                            <div class="mt-4 md:mt-0 md:ml-6">
+                                <span class="inline-block bg-blue-600 text-blue-100 px-3 py-1 rounded-full text-sm font-medium">
+                                    Expected Graduation: May 2026
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="py-20 bg-gray-900">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl font-bold text-white mb-4">Certifications</h2>
+                <div class="w-20 h-1 gradient-accent mx-auto rounded-full"></div>
+            </div>
+
+            <div id="projects-grid" class="grid gap-8 justify-items-center">
+                <!-- Certification 1 -->
+                <div class="tech-card bg-white p-6 rounded-xl shadow-lg fade-in cursor-pointer" onclick="openCertModal('coursera')">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900">Coursera Project Certificate</h3>
+                        <p class="text-blue-600 font-medium">Coursera Project Network</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-gray-600 text-sm mb-3">Customer Service with Python: Build a Chatbot using ChatGPT</p>
+                        <span class="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-medium mb-3">
+                            Feb 13, 2025
+                        </span>
+                        <div class="mt-3">
+                            <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition duration-300 flex items-center mx-auto">
+                                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"/>
+                                </svg>
+                                Show Certificate
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certification 2 -->
+                <div class="tech-card bg-white p-6 rounded-xl shadow-lg fade-in cursor-pointer" onclick="openCertModal('oracle')">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-r from-red-500 to-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900">Oracle Certified Foundations Associate</h3>
+                        <p class="text-red-600 font-medium">Oracle University</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-gray-600 text-sm mb-3">Oracle Fusion Cloud Applicatins CX</p>
+                        <span class="inline-block bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs font-medium mb-3">
+                            May 15, 2025
+                        </span>
+                        <div class="mt-3">
+                            <button class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition duration-300 flex items-center mx-auto">
+                                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"/>
+                                </svg>
+                                Show Certificate
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificate Modal -->
+    <div id="certModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-xl max-w-4xl max-h-[90vh] overflow-auto m-4 relative">
+            <div class="sticky top-0 bg-white border-b border-gray-200 p-4 flex justify-between items-center">
+                <h3 id="modalTitle" class="text-xl font-bold text-gray-900"></h3>
+                <button onclick="closeCertModal()" class="text-gray-500 hover:text-gray-700 text-2xl font-bold">
+                    ×
+                </button>
+            </div>
+            <div class="p-6">
+                <div class="text-center">
+                    <img id="modalImage" src="" alt="Certificate" class="max-w-full h-auto mx-auto rounded-lg shadow-lg">
+                    <p id="modalDescription" class="text-gray-600 mt-4"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Modal -->
+    <div id="projectModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-xl max-w-5xl max-h-[90vh] overflow-auto m-4 relative">
+            <div class="sticky top-0 bg-white border-b border-gray-200 p-4 flex justify-between items-center">
+                <h3 id="projectModalTitle" class="text-xl font-bold text-gray-900"></h3>
+                <button onclick="closeProjectModal()" class="text-gray-500 hover:text-gray-700 text-2xl font-bold">
+                    ×
+                </button>
+            </div>
+            <div class="p-6">
+                <div id="projectModalContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Featured Projects</h2>
+                <div class="w-20 h-1 gradient-bg mx-auto rounded-full"></div>
+            </div>
+
+            <div id="projects-grid" class="grid gap-8 justify-items-center">
+                <!-- Project 1 -->
+                <div class="tech-card bg-white rounded-xl shadow-lg overflow-hidden fade-in">
+                    <div class="h-48 bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center">
+                        <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Tech App Usage & Churn Dashboard</h3>
+                        <p class="text-gray-600 mb-4">Completed end-to-end analytics: data modeling, SQL, cleaning, Tableau dashboards with filters, actions, insights, packaged portfolio-ready.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-600 text-xs rounded-full">DB Browser</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-600 text-xs rounded-full">Google Sheets</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-600 text-xs rounded-full">Tableau</span>
+                        </div>
+                        <button onclick="openProjectModal('dashboard')" class="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white py-2 rounded-lg hover:from-blue-600 hover:to-purple-600 transition duration-300">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 gradient-bg text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl font-bold mb-4">Contact Me</h2>
+                <div class="w-20 h-1 bg-white mx-auto rounded-full"></div>
+                <p class="text-xl mt-6 opacity-65">I'm always interested in new opportunities and exciting projects. 
+                    Let's connect and discuss how we can work together!</p>
+            </div>
+
+            <div class="max-w-2xl mx-auto">
+                <div class="fade-in">
+                    <div class="max-w-lg mx-auto space-y-8">
+                        <!-- Email - Featured -->
+                        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-white/20 hover:border-white/40 transition duration-300">
+                            <div class="flex flex-col items-center text-center space-y-4">
+                                <div class="w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
+                                    <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="font-semibold text-xl mb-2">Email</div>
+                                    <a href="mailto:thummaruckkit.k@gmail.com" class="text-blue-300 hover:text-blue-200 text-lg font-medium transition duration-300 hover:underline">
+                                        thummaruckkit.k@gmail.com
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Phone & Location Row -->
+                        <div class="grid grid-cols-2 gap-6">
+                            <!-- Phone -->
+                            <div class="flex flex-col items-center text-center space-y-3 py-4">
+                                <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="font-semibold text-sm mb-1">Phone</div>
+                                    <div class="opacity-90 text-sm">+66 61-636-7995</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Location -->
+                            <div class="flex flex-col items-center text-center space-y-3 py-4">
+                                <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="font-semibold text-sm mb-1">Location</div>
+                                    <div class="opacity-90 text-sm">Bangkok, Thailand</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 text-center">
+                        <h4 class="text-sm font-semibold mb-4">Follow Me</h4>
+                        <div class="flex justify-center space-x-6">
+                            <!-- LinkedIn Button -->
+                            <button onclick="openSocialLink('linkedin')" class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center hover:bg-blue-600 transition duration-300 group">
+                                <svg class="w-7 h-7 group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                </svg>
+                            </button>
+                            <!-- GitHub Button -->
+                            <button onclick="openSocialLink('github')" class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center hover:bg-gray-800 transition duration-300 group">
+                                <svg class="w-7 h-7 group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                            </button>
+                            <!-- Facebook Button -->
+                            <button onclick="openSocialLink('facebook')" class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center hover:bg-blue-700 transition duration-300 group">
+                                <svg class="w-7 h-7 group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="flex items-center justify-center space-x-3 mb-4">
+                    <div class="w-6 h-6 bg-gray-800 border rounded-xl flex items-center justify-center" style="border: 1px solid; border-image: linear-gradient(135deg, #3b82f6, #8b5cf6) 1;">
+                        <span class="text-blue-400 font-bold text-xs">KT</span>
+                    </div>
+                    <div class="text-2xl font-bold gradient-accent bg-clip-text text-transparent">
+                        Kanok T.
+                    </div>
+                </div>
+                </p>
+                <div class="text-sm text-gray-500">
+                    © 2025 Kanok T. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Navigation links smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                // Close mobile menu if open
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Typing animation
+        const typingText = document.getElementById('typing-text');
+        const texts = ['Data Analyst', 'Junior Developer'];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function typeWriter() {
+            const currentText = texts[textIndex];
+            
+            if (isDeleting) {
+                typingText.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingText.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typeSpeed = isDeleting ? 100 : 150;
+
+            if (!isDeleting && charIndex === currentText.length) {
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+                typeSpeed = 500;
+            }
+
+            setTimeout(typeWriter, typeSpeed);
+        }
+
+        // Start typing animation
+        typeWriter();
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Skill bars animation
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const skillBars = entry.target.querySelectorAll('.skill-bar');
+                    skillBars.forEach(bar => {
+                        const width = bar.getAttribute('data-width');
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, 500);
+                    });
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.tech-card').forEach(card => {
+            skillObserver.observe(card);
+        });
+
+        // Certificate Modal Functions
+        const certData = {
+            coursera: {
+                title: 'Coursera Project Certificate',
+                image: 'img_certificates/coursera.png',
+                description: 'Intermediate level certification for Python programming and a basic understanding of AI concepts are recommended for this course.'
+            },
+            oracle: {
+                title: 'Oracle Certified Foundations Associate',
+                image: 'img_certificates/oracle.png',
+                description: 'Oracle Corporation as Oracle Certified. Oracle Certified Foundations Associate.'
+            },
+        };
+
+        function openCertModal(certType) {
+            const modal = document.getElementById('certModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalImage = document.getElementById('modalImage');
+            const modalDescription = document.getElementById('modalDescription');
+            
+            const cert = certData[certType];
+            
+            modalTitle.textContent = cert.title;
+            modalImage.src = cert.image || 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDQwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjRjNGNEY2Ii8+CjxwYXRoIGQ9Ik0yMDAgMTUwTDE3NSAxMjVIMjI1TDIwMCAxNTBaIiBmaWxsPSIjOUI5QjlCIi8+CjxwYXRoIGQ9Ik0yMDAgMTUwTDIyNSAxNzVIMTc1TDIwMCAxNTBaIiBmaWxsPSIjOUI5QjlCIi8+CjxwYXRoIGQ9Ik0yMDAgMTUwTDE3NSAxNzVWMTI1TDIwMCAxNTBaIiBmaWxsPSIjQzNDM0MzIi8+CjxwYXRoIGQ9Ik0yMDAgMTUwTDIyNSAxMjVWMTc1TDIwMCAxNTBaIiBmaWxsPSIjQzNDM0MzIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMjAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjNkI3Mjg0IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiPkNlcnRpZmljYXRlIEltYWdlPC90ZXh0Pgo8L3N2Zz4K';
+            modalImage.alt = cert.title;
+            modalDescription.textContent = cert.description;
+            
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCertModal() {
+            const modal = document.getElementById('certModal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('certModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeCertModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeCertModal();
+                closeProjectModal();
+            }
+        });
+        
+        // Social Media Links Function
+        function openSocialLink(platform) {
+            const socialLinks = {
+                linkedin: 'https://www.linkedin.com/in/kanok-thummaruckkit-b35237381/', 
+                github: 'https://github.com/KanokT', 
+                facebook: 'https://www.facebook.com/profile.php?id=61581025386400' 
+            };
+            
+            const url = socialLinks[platform];
+            if (url) {
+                window.open(url, '_blank', 'noopener,noreferrer');
+            }
+        }
+
+        // Project Modal Functions
+        const projectData = {
+            dashboard: {
+                title: 'Tech App & Dashboard',
+                description: 'Completed end-to-end analytics',
+                fullDescription: 'Completed end-to-end analytics: data modeling, SQL, cleaning, Tableau dashboards with filters, actions, insights, packaged portfolio-ready.',
+                technologies: ['DB Browser', 'Tableau', 'Google Sheets'],
+                features: [
+                    'KPI Cards: Total Users, Churn %, Avg Session Minutes',
+                    'Ranking: Top Features (จำนวนครั้งใช้, เวลารวม/เฉลี่ย)',
+                    'Segmentation: Engagement by Age, Churn by Device',
+                    'Interactivity: Global Filters (Start Time/Device/Age), Dashboard Actions',
+                    'Export & Share: PDF รายงาน, Tableau .twbx',
+                    'Data Modeling (ER/Schema): users, sessions, feature_usage, churn + PK/FK/Constraints',
+                    'SQL Analysis: Aggregation, COUNTD, CTE, Checks',
+                    'QA: ตารางตรวจ LOD (Users/Churned/Churn%)'
+                ],
+                images: [
+                    'img_project/Tread & Ranking.jpg'
+                ],
+                github: 'https://github.com/KanokT'
+            },
+        };
+
+        function openProjectModal(projectType) {
+            const modal = document.getElementById('projectModal');
+            const modalTitle = document.getElementById('projectModalTitle');
+            const modalContent = document.getElementById('projectModalContent');
+            
+            const project = projectData[projectType];
+            
+            modalTitle.textContent = project.title;
+            
+            modalContent.innerHTML = `
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <img src="${project.images[0]}" alt="${project.title}" class="w-full h-64 object-cover rounded-lg shadow-lg mb-6">
+                        
+                        <div class="mb-6">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-3">เทคโนโลยีที่ใช้</h4>
+                            <div class="flex flex-wrap gap-2">
+                                ${project.technologies.map(tech => `
+                                    <span class="px-3 py-1 bg-blue-100 text-blue-600 text-sm rounded-full">${tech}</span>
+                                `).join('')}
+                            </div>
+                        </div>
+                        
+                        <div class="flex space-x-4">
+                            <button onclick="window.open('${project.github}', '_blank', 'noopener,noreferrer')" class="flex-1 bg-gray-800 text-white py-2 px-4 rounded-lg hover:bg-gray-900 transition duration-300 flex items-center justify-center">
+                                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                                GitHub
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="mb-6">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-3">รายละเอียดโปรเจค</h4>
+                            <p class="text-gray-600 leading-relaxed">${project.fullDescription}</p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-lg font-semibold text-gray-900 mb-3">ฟีเจอร์หลัก</h4>
+                            <ul class="space-y-2">
+                                ${project.features.map(feature => `
+                                    <li class="flex items-start">
+                                        <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                        </svg>
+                                        <span class="text-gray-600">${feature}</span>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeProjectModal() {
+            const modal = document.getElementById('projectModal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+        // Close project modal when clicking outside
+        document.addEventListener('DOMContentLoaded', function() {
+            const projectModal = document.getElementById('projectModal');
+            if (projectModal) {
+                projectModal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        closeProjectModal();
+                    }
+                });
+            }
+        });
+
+        // Dynamic grid layout for certifications and projects
+        function updateGridLayout() {
+            const certGrid = document.getElementById('certifications').querySelector('#projects-grid');
+            const projectGrid = document.getElementById('projects').querySelector('#projects-grid');
+            
+            // Function to apply grid layout based on card count
+            function applyGridLayout(grid, cardCount) {
+                if (!grid) return;
+                
+                grid.className = 'grid gap-8 justify-items-center';
+                
+                if (cardCount === 1) {
+                    grid.classList.add('grid-cols-1', 'max-w-sm', 'mx-auto');
+                } else if (cardCount === 2) {
+                    grid.classList.add('grid-cols-1', 'md:grid-cols-2', 'max-w-2xl', 'mx-auto');
+                } else if (cardCount === 3) {
+                    grid.classList.add('grid-cols-1', 'md:grid-cols-2', 'lg:grid-cols-3', 'max-w-4xl', 'mx-auto');
+                } else if (cardCount === 4) {
+                    grid.classList.add('grid-cols-1', 'md:grid-cols-2', 'lg:grid-cols-4', 'max-w-5xl', 'mx-auto');
+                } else if (cardCount === 5) {
+                    grid.classList.add('grid-cols-1', 'md:grid-cols-2', 'lg:grid-cols-3', 'xl:grid-cols-5', 'max-w-6xl', 'mx-auto');
+                } else {
+                    grid.classList.add('grid-cols-1', 'md:grid-cols-2', 'lg:grid-cols-3', 'xl:grid-cols-4', 'max-w-7xl', 'mx-auto');
+                }
+            }
+            
+            if (certGrid) {
+                const certCards = certGrid.children.length;
+                applyGridLayout(certGrid, certCards);
+            }
+            
+            if (projectGrid) {
+                const projectCards = projectGrid.children.length;
+                applyGridLayout(projectGrid, projectCards);
+            }
+        }
+
+        // Initialize grid layout on page load
+        document.addEventListener('DOMContentLoaded', updateGridLayout);
+
+        // Add active nav link highlighting
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('text-blue-600');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('text-blue-600');
+                }
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9819fb163789d336',t:'MTc1ODI5NDMyMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
